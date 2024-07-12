@@ -1,6 +1,19 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(project11_nav_msgs)
-find_package(catkin REQUIRED roscpp std_msgs message_generation geometry_msgs project11_msgs)
+
+find_package(catkin REQUIRED 
+  actionlib_msgs
+  geometry_msgs
+  message_generation
+  nav_msgs
+  project11_msgs
+  roscpp
+  std_msgs
+)
+
+add_action_files(DIRECTORY action FILES
+ multibeam_coverage.action
+)
 
 add_message_files(
   FILES
@@ -21,9 +34,11 @@ add_message_files(
 
 generate_messages(
   DEPENDENCIES
-  std_msgs
+  actionlib_msgs
   geometry_msgs
+  nav_msgs
   project11_msgs
+  std_msgs
 )
 
 catkin_package(CATKIN_DEPENDS message_runtime geometry_msgs project11_msgs)
